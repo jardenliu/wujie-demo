@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo3</title>
+</head>
+<body>
+    <div id="editor" contenteditable style="border: 1px solid #e8e8e8;height: 200px;"></div>
+    <button id="button">查看</button>
+    <div id="result"></div>
+
+    <script>
+        
+        const editor = document.getElementById('editor')
+        const button = document.getElementById('button')
+        
+        button.onclick = function() {
+            console.log(editor.childNodes[0] instanceof Text)
+            document.getElementById('result').innerHTML = `editor.childNodes[0] instanceof Text： ${editor.childNodes[0] instanceof Text}`
+        }
+    </script>
+</body>
+</html>
