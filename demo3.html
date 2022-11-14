@@ -17,8 +17,10 @@
         const button = document.getElementById('button')
         
         button.onclick = function() {
-            console.log(editor.childNodes[0] instanceof Text)
-            document.getElementById('result').innerHTML = `editor.childNodes[0] instanceof Text： ${editor.childNodes[0] instanceof Text}`
+            const secondChild = editor.childNodes[1]
+            console.log('secondChild.childNodes[0]',secondChild.childNodes[0])
+            console.log(secondChild.childNodes[0] instanceof Text)
+            document.getElementById('result').innerHTML = `secondChild.childNodes[0] instanceof Text： ${editor.childNodes[0] instanceof Text}`
         }
     </script>
 </body>
