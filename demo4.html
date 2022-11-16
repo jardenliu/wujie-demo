@@ -10,16 +10,10 @@
     <div id="result"></div>
 
     <script>
-        const parent = document.createElement('div')
-        parent.innerHTML = '<div id="child"></div>'
-        document.body.appendChild(parent.cloneNode(true))
-
-        const child  = document.querySelector('#child')
-
-        console.log(child instanceof HTMLElement)
-        
-        document.getElementById('result').innerHTML = `child instanceof HTMLElement: ${child instanceof HTMLElement}`
-        
+        const doc = new DOMParser().parseFromString('<div id="test"></div>', 'text/html')
+        console.log("doc:", doc)
+        console.log("document.querySelector.call test:", document.querySelector.call(doc, "#test"))
+        console.log("doc.querySelector test2:", doc.querySelector("#test"))
     </script>
 </body>
 </html>
