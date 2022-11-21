@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 30px">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shadow dom</title>
+
+    <script>
+        class Test extends HTMLElement {
+            constructor() {
+                super()
+                this.attachShadow({ mode: "open" })
+
+                const temp = document.createElement('html')
+                temp.style.fontSize = '12px';
+                const head = document.createElement('head')
+                const body = document.createElement('body')
+                temp.appendChild(head)
+                temp.appendChild(body)
+
+                const p = document.createElement('p')
+                p.innerText='内层'
+                p.style.fontSize='2em'
+
+                body.appendChild(p)
+
+
+                this.shadowRoot.appendChild(temp)
+            }
+        }
+
+        window.customElements.define('test-shadow', Test)
+    </script>
+</head>
+
+<body>
+    <p style="font-size: 2em;">外层</p>
+
+    <div id="wrapper">
+        <test-shadow></test-shadow>
+    </div>
+
+</body>
+
+</html>
