@@ -31,9 +31,16 @@
                 return desc.get.apply(this, arguments)
             },
             set(v) {
-                const doc = new DOMParser().parseFromString(v, 'text/html')
+                const temp = document.createElement('div')
+                if (window.__WUJIE_RAW_DOCUMENT_QUERY_SELECTOR__) {
+                    const rawBody = window.__WUJIE_RAW_DOCUMENT_QUERY_SELECTOR__.call(window.__WUJIE_RAW_WINDOW__.document, 'body')
+                    console.log('rawBody', rawBody)
+                    rawBody.appendChild(temp)
+                }
+                
                 desc.set.apply(this, [''])
-                let node = doc.body.firstChild
+                desc.set.apply(temp, arguments)
+                let node = temp.firstChild
                 const nodeList = []
                 while(node) {
                     nodeList.push(node)
@@ -42,6 +49,7 @@
                 nodeList.forEach(node => {
                     this.appendChild(node)
                 });
+                temp.remove()
             }
         })
 
@@ -54,6 +62,8 @@
 
         console.log(child instanceof HTMLElement)
         console.log(child2t2 instanceof HTMLElement)
+
+        console.log('parent', parent)
 
         document.getElementById('result').innerHTML = `child instanceof HTMLElement: ${child instanceof HTMLElement}`
     
